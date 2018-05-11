@@ -1,20 +1,83 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<mat-toolbar>
+  <span>Aircompany</span>
+  <span class="example-fill-remaining-space"></span>
+  <mat-form-field>
+    <mat-select [(value)]="selected">
+      <mat-option value="option1">Русский</mat-option>
+      <mat-option value="option2">English</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button (click)="showLoginPopup()">
+    <mat-icon>account_circle</mat-icon>
+    <span> Login</span>
+  </button>
+  <button mat-button>
+    <mat-icon>menu</mat-icon>
+    <span> Menu</span>
+  </button>
+</mat-toolbar>
+<router-outlet></router-outlet>
+<footer>
+  <mat-divider></mat-divider>
+  <div class="container">
+    <div class="row top-footer">
+      <div class="col">
+        <p class="t-h3">Справочная служба</p>
+        <p>
+          <span id="belarus-only">106 (Только по Беларуси)</span><br>
+          <span>+375 17 220 25 55</span>
+        </p>
+        <a href="mailto:support@belavia.by">support@belavia.by</a>
+      </div>
+      <div class="col">
+        <mat-list>
+          <mat-list-item><a href="/kontakty/">Кассы продаж</a></mat-list-item>
+          <mat-list-item><a href="/time-table/">Расписание</a></mat-list-item>
+          <mat-list-item><a href="/table/">Табло вылета/прилета</a></mat-list-item>
+          <mat-list-item><a href="/obrashheniya-grazhdan/">Обращения граждан</a></mat-list-item>
+          <mat-list-item><a href="/perevozka-gruzov/">Грузовые перевозки</a></mat-list-item>
+        </mat-list>
+      </div>
+      <div class="col">
+        <mat-list>
+          <mat-list-item><a href="/agentam/">Агентам</a></mat-list-item>
+          <mat-list-item><a href="/onair/">Журнал OnAir</a></mat-list-item>
+          <mat-list-item><a href="/kontakty/obratnaya-svyaz/">Обратная связь</a></mat-list-item>
+          <mat-list-item><a href="/dlya-smi/">Для СМИ</a></mat-list-item>
+        </mat-list>
+      </div>
+      <div class="col">
+        <div class="social">
+          <a href="http://www.facebook.com/belavia" title="Facebook" target="_blank">
+            <img src="/assets/soc-icons/facebook.svg" alt="Facebook" class="img-responsive">
+          </a>
+          <a href="http://twitter.com/Belavia_by" title="Twitter" target="_blank">
+            <img src="/assets/soc-icons/twitter.svg" alt="Twitter" class="img-responsive">
+          </a>
+          <a href="https://www.instagram.com/belavia.airlines/" title="Instagram" target="_blank">
+            <img src="/assets/soc-icons/instagram.svg" alt="Instagram" class="img-responsive">
+          </a>
+          <a href="https://www.youtube.com/user/OfficialBelavia" title="Youtube" target="_blank">
+            <img src="/assets/soc-icons/youtube.svg" alt="Youtube" class="img-responsive">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="container bottom-footer">
+    <div class="row">
+      <div class="col copyright">
+        <span>Мы знаем, где купить авиабилеты дешево. Билеты на самолет в 220 стран мира.</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 col-mb-12">
+        <a href="/konfidencialnost/">Конфиденциальность</a>
+      </div>
+      <div class="col-9 copyright col-mb-12">
+        <span>© 2000 — 2018 «Авиакомпания «Белавиа»</span>
+      </div>
+    </div>
+  </div>
+</footer>
