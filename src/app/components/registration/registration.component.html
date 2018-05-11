@@ -1,12 +1,14 @@
 <div class="container">
   <div class="row">
-    <h2>Регистрация</h2>
-    <p>
-      Обращаем Ваше внимание на необходимость заполнения регистрационной анкеты в точном соответствии с паспортными
-      данными.
-      При изменении паспортных данных просим Вас известить об этом Авиакомпанию незамедлительно.
-      Несоответствие регистрационных данных паспортным может служить причиной отказа принятия билета при посадке.
-    </p>
+    <div class="col">
+      <h2>Регистрация</h2>
+      <p>
+        Обращаем Ваше внимание на необходимость заполнения регистрационной анкеты в точном соответствии с паспортными
+        данными.
+        При изменении паспортных данных просим Вас известить об этом Авиакомпанию незамедлительно.
+        Несоответствие регистрационных данных паспортным может служить причиной отказа принятия билета при посадке.
+      </p>
+    </div>
   </div>
   <div class="row">
     <div class="col">
@@ -26,22 +28,70 @@
       </div>
     </div>
   </div>
-
-  <h3>Персональные данные</h3>
-  <mat-form-field>
-    <input matInput placeholder="Имя">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Фамилия">
-  </mat-form-field>
-  <mat-radio-group>
-    <mat-radio-button value="1">Option 1</mat-radio-button>
-    <mat-radio-button value="2">Option 2</mat-radio-button>
-  </mat-radio-group>
-  <mat-form-field>
-    <input matInput placeholder="Login">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Login">
-  </mat-form-field>
+  <div class="row">
+    <div class="col">
+      <div class="vertical">
+        <h3>Персональные данные</h3>
+        <mat-form-field>
+          <input matInput placeholder="Имя">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Фамилия">
+        </mat-form-field>
+        <mat-radio-group>
+          <mat-radio-button value="MALE">Мужской</mat-radio-button>
+          <mat-radio-button value="FEMALE">Женский</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Дата рождения">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Номер телефона">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="vertical">
+        <h3>Паспортные данные</h3>
+        <mat-form-field>
+          <input matInput placeholder="Серия и номер паспорта">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Гражданство">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="vertical">
+        <h3>Адресные данные</h3>
+        <mat-form-field>
+          <input matInput placeholder="Страна">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Город">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Улица">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Дом">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Квартира">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <button mat-button (click)="showLoginPopup()" color="primary">
+    <h3>Зарегистрироваться</h3>
+  </button>
 </div>
