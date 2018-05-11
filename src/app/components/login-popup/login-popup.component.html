@@ -1,0 +1,16 @@
+<div class="login">
+  <h3>Enter you credentials</h3>
+  <mat-form-field>
+    <input matInput placeholder="Login">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+  </mat-form-field>
+  <div>
+    <button mat-button>Login</button>
+    <span class="example-fill-remaining-space"></span>
+    <button mat-button routerLink="registration" (click)="close()">Registration</button>
+  </div>
+</div>
+

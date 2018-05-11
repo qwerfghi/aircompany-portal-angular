@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <h2>Регистрация</h2>
+    <p>
+      Обращаем Ваше внимание на необходимость заполнения регистрационной анкеты в точном соответствии с паспортными
+      данными.
+      При изменении паспортных данных просим Вас известить об этом Авиакомпанию незамедлительно.
+      Несоответствие регистрационных данных паспортным может служить причиной отказа принятия билета при посадке.
+    </p>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="vertical">
+        <h3>Логин и пароль</h3>
+        <mat-form-field>
+          <input matInput placeholder="Логин">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Пароль" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Повторите пароль" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <h3>Персональные данные</h3>
+  <mat-form-field>
+    <input matInput placeholder="Имя">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Фамилия">
+  </mat-form-field>
+  <mat-radio-group>
+    <mat-radio-button value="1">Option 1</mat-radio-button>
+    <mat-radio-button value="2">Option 2</mat-radio-button>
+  </mat-radio-group>
+  <mat-form-field>
+    <input matInput placeholder="Login">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Login">
+  </mat-form-field>
+</div>
