@@ -46,13 +46,16 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {IndexComponent} from './components/index/index.component';
 import {LoginPopupComponent} from './components/login-popup/login-popup.component';
 import {RegistrationComponent} from './components/registration/registration.component';
+import {SharedService} from './service/shared.service';
+import {TicketsSearchComponent} from './components/tickets-search/tickets-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
     LoginPopupComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    TicketsSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,7 @@ import {RegistrationComponent} from './components/registration/registration.comp
     MatFormFieldModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [SharedService],
   entryComponents: [LoginPopupComponent],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,61 @@
+<div class="container">
+  <mat-form-field>
+    <mat-select placeholder="Откуда" [(ngModel)]="ticket.migration.departure">
+      <mat-option *ngFor="let departureCity of cities" [value]="departureCity">
+        {{ departureCity.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Куда" [(ngModel)]="ticket.migration.arrival">
+      <mat-option *ngFor="let arrivalCity of cities" [value]="arrivalCity">
+        {{ arrivalCity.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="ticket.migration.departureDate" [matDatepicker]="picker"
+           placeholder="Дата отправления">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-checkbox [(ngModel)]="ticket.baggageAvailable">Багаж</mat-checkbox>
+  <mat-checkbox [(ngModel)]="ticket.returnAvailable">Возврат билета</mat-checkbox>
+  <mat-checkbox [(ngModel)]="ticket.exchangeAvailable">Обмен билета</mat-checkbox>
+  <button mat-button (click)="searchTickets()" color="primary">Найти билеты</button>
+
+  <mat-table #table matSort [dataSource]="dataSource">
+
+    <ng-container matColumnDef="arrival">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Время отправления</mat-header-cell>
+      <mat-cell *matCellDef="let migration"> {{migration.departureDate}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="departure">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Время прибытия</mat-header-cell>
+      <mat-cell *matCellDef="let migration"> {{migration.arrivalDate}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cost">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Цена билета</mat-header-cell>
+      <mat-cell *matCellDef="let migration"> {{migration.cost}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="buy">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let migration">
+        <button mat-button (click)="buyTicket()" color="primary">Купить</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let migration; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {LoginPopupComponent} from './components/login-popup/login-popup.component';
 import {MatDialog} from '@angular/material';
+import {SharedService} from './service/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ export class AppComponent {
 
   selected = 'option2';
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog,
+              public sharedService: SharedService) {
   }
 
   showLoginPopup(): void {

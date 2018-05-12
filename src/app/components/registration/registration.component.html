@@ -15,10 +15,10 @@
       <div class="vertical">
         <h3>Логин и пароль</h3>
         <mat-form-field>
-          <input matInput placeholder="Логин">
+          <input [(ngModel)]="user.username" matInput placeholder="Логин">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Пароль" [type]="hide ? 'password' : 'text'">
+          <input matInput [(ngModel)]="user.password" placeholder="Пароль" [type]="hide ? 'password' : 'text'">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         </mat-form-field>
         <mat-form-field>
@@ -33,25 +33,25 @@
       <div class="vertical">
         <h3>Персональные данные</h3>
         <mat-form-field>
-          <input matInput placeholder="Имя">
+          <input [(ngModel)]="person.name" matInput placeholder="Имя">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Фамилия">
+          <input [(ngModel)]="person.lastName" matInput placeholder="Фамилия">
         </mat-form-field>
-        <mat-radio-group>
+        <mat-radio-group [(ngModel)]="person.sex">
           <mat-radio-button value="MALE">Мужской</mat-radio-button>
           <mat-radio-button value="FEMALE">Женский</mat-radio-button>
         </mat-radio-group>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Дата рождения">
+          <input matInput [(ngModel)]="person.birthdate" [matDatepicker]="picker" placeholder="Дата рождения">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Email">
+          <input matInput [(ngModel)]="person.email" placeholder="Email">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Номер телефона">
+          <input matInput [(ngModel)]="person.phone" placeholder="Номер телефона">
         </mat-form-field>
       </div>
     </div>
@@ -61,10 +61,14 @@
       <div class="vertical">
         <h3>Паспортные данные</h3>
         <mat-form-field>
-          <input matInput placeholder="Серия и номер паспорта">
+          <input [(ngModel)]="person.passport" matInput placeholder="Серия и номер паспорта">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Гражданство">
+          <mat-select placeholder="Гражданство" [(ngModel)]="person.country">
+            <mat-option *ngFor="let country of countries" [value]="country">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
     </div>
@@ -74,24 +78,24 @@
       <div class="vertical">
         <h3>Адресные данные</h3>
         <mat-form-field>
-          <input matInput placeholder="Страна">
+          <input [(ngModel)]="address.country" matInput placeholder="Страна">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Город">
+          <input [(ngModel)]="address.city" matInput placeholder="Город">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Улица">
+          <input [(ngModel)]="address.street" matInput placeholder="Улица">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Дом">
+          <input [(ngModel)]="address.houseNumber" matInput placeholder="Дом">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Квартира">
+          <input [(ngModel)]="address.apartmentNumber" matInput placeholder="Квартира">
         </mat-form-field>
       </div>
     </div>
   </div>
-  <button mat-button (click)="showLoginPopup()" color="primary">
+  <button mat-button (click)="registerUser()" color="primary">
     <h3>Зарегистрироваться</h3>
   </button>
 </div>

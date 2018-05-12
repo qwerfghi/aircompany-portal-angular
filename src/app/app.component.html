@@ -1,20 +1,24 @@
 <mat-toolbar>
-  <span>Aircompany</span>
-  <span class="example-fill-remaining-space"></span>
-  <mat-form-field>
-    <mat-select [(value)]="selected">
-      <mat-option value="option1">Русский</mat-option>
-      <mat-option value="option2">English</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <button mat-button (click)="showLoginPopup()">
-    <mat-icon>account_circle</mat-icon>
-    <span> Login</span>
-  </button>
-  <button mat-button>
-    <mat-icon>menu</mat-icon>
-    <span> Menu</span>
-  </button>
+  <div class="container">
+    <span>Aircompany</span>
+    <span class="example-fill-remaining-space"></span>
+    <mat-form-field>
+      <mat-select [(value)]="selected">
+        <mat-option value="option1">Русский</mat-option>
+        <mat-option value="option2">English</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button (click)="showLoginPopup()">
+      <mat-icon>account_circle</mat-icon>
+      <span> Login</span>
+    </button>
+    asd
+    <span [hidden]="sharedService.currentUser == undefined">{{sharedService.currentUser == undefined ? 'asd' : sharedService.currentUser.username}}</span>
+    <button mat-button>
+      <mat-icon>menu</mat-icon>
+      <span> Menu</span>
+    </button>
+  </div>
 </mat-toolbar>
 <router-outlet></router-outlet>
 <footer>
