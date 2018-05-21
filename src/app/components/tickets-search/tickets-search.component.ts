@@ -2,12 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Ticket} from '../../model/entity/Ticket';
 import {Migration} from '../../model/entity/Migration';
 import {City} from '../../model/entity/City';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
+import {DatePipe} from '@angular/common';
+import {GlobalService} from '../../service/global.service';
 
 @Component({
   selector: 'app-tickets-search',
@@ -28,18 +26,22 @@ export class TicketsSearchComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private datePipe: DatePipe,
+              private global: GlobalService) {
   }
 
   ngOnInit() {
     this.ticket = new Ticket();
     this.ticket.migration = new Migration();
+    this.ticket.exchangeAvailable = false;
+    this.ticket.returnAvailable = false;
+    this.ticket.baggageAvailable = false;
     this.getCities();
   }
 
@@ -48,11 +50,13 @@ export class TicketsSearchComponent implements OnInit {
   }
 
   searchTickets() {
-    return this.http.post<Migration[]>(`${this.TicketsUrl}/search`, this.ticket, httpOptions)
-      .subscribe(migrations => this.dataSource.data = migrations);
+    return this.http.post<Ticket[]>(`${this.TicketsUrl}/search`, this.ticket, this.global.httpOptions)
+      .subscribe(tickets => this.dataSource.data = tickets);
   }
 
-  buyTicket() {
-
+  buyTicket(ticket: Ticket) {
+    ticket.passenger.passengerId = this.global.currentUser.userId;
+    return this.http.post<Ticket>(`${this.TicketsUrl}/buy`, ticket, this.global.httpOptions)
+      .subscribe();
   }
 }

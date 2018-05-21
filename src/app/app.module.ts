@@ -46,8 +46,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {IndexComponent} from './components/index/index.component';
 import {LoginPopupComponent} from './components/login-popup/login-popup.component';
 import {RegistrationComponent} from './components/registration/registration.component';
-import {SharedService} from './service/shared.service';
+import {GlobalService} from './service/global.service';
 import {TicketsSearchComponent} from './components/tickets-search/tickets-search.component';
+import {StorageServiceModule} from 'angular-webstorage-service';
 
 @NgModule({
   declarations: [
@@ -98,9 +99,10 @@ import {TicketsSearchComponent} from './components/tickets-search/tickets-search
     MatToolbarModule,
     MatTooltipModule,
     MatFormFieldModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    StorageServiceModule
   ],
-  providers: [SharedService],
+  providers: [GlobalService],
   entryComponents: [LoginPopupComponent],
   bootstrap: [AppComponent]
 })

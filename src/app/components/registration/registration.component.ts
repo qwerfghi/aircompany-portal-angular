@@ -5,7 +5,7 @@ import {Address} from '../../model/entity/Address';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Country} from '../../model/entity/Country';
 import {MatSnackBar} from '@angular/material';
-import {SharedService} from '../../service/shared.service';
+import {Router} from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -30,7 +30,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private http: HttpClient,
               public snackBar: MatSnackBar,
-              private sharedService: SharedService) {
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
 
   registerUser() {
     this.http.post<User>(`${this.UsersUrl}/register`, this.user, httpOptions).subscribe(next => {
-      this.sharedService.currentUser = this.user;
+      this.router.navigateByUrl('/index');
     }, err => {
       this.snackBar.open('Error', null, {
         duration: 2000,

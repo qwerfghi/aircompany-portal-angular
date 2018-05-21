@@ -19,6 +19,12 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Класс" [(ngModel)]="ticket.clazz">
+      <mat-option value="BUSINESS">Бизнесс-класс</mat-option>
+      <mat-option value="ECONOMY">Эконом-класс</mat-option>
+    </mat-select>
+  </mat-form-field>
   <mat-checkbox [(ngModel)]="ticket.baggageAvailable">Багаж</mat-checkbox>
   <mat-checkbox [(ngModel)]="ticket.returnAvailable">Возврат билета</mat-checkbox>
   <mat-checkbox [(ngModel)]="ticket.exchangeAvailable">Обмен билета</mat-checkbox>
@@ -28,23 +34,23 @@
 
     <ng-container matColumnDef="arrival">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Время отправления</mat-header-cell>
-      <mat-cell *matCellDef="let migration"> {{migration.departureDate}}</mat-cell>
+      <mat-cell *matCellDef="let ticket">{{ticket.migration.departureDate | date: 'dd-MM-yyyy HH:mm:ss'}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="departure">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Время прибытия</mat-header-cell>
-      <mat-cell *matCellDef="let migration"> {{migration.arrivalDate}}</mat-cell>
+      <mat-cell *matCellDef="let ticket">{{ticket.migration.arrivalDate | date: 'dd-MM-yyyy HH:mm:ss'}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="cost">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Цена билета</mat-header-cell>
-      <mat-cell *matCellDef="let migration"> {{migration.cost}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Цена билета</mat-header-cell>
+      <mat-cell *matCellDef="let ticket">{{ticket.cost}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="buy">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let migration">
-        <button mat-button (click)="buyTicket()" color="primary">Купить</button>
+      <mat-cell *matCellDef="let ticket">
+        <button mat-button (click)="buyTicket(ticket)" color="primary">Купить</button>
       </mat-cell>
     </ng-container>
 
