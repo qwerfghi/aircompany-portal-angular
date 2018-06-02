@@ -12,13 +12,10 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.images = new Array<string>();
-    this.images[0] = '/assets/banner_Kazan.jpg';
-    this.images[1] = '/assets/banner_Rostov.jpg';
-    this.images[2] = '/assets/ffp_banner_mydutyfree.jpg';
+    this.images = [];
+    this.images[0] = '/assets/banner_registration.jpg';
+    this.images[1] = '/assets/banner_turkie.jpg';
+    this.images[2] = '/assets/banner_italy.jpg';
     this.images[3] = '/assets/baggage-fin.jpg';
-    this.images[4] = '/assets/banner_Baggage.jpg';
-    this.images[5] = '/assets/banner_Skypass.jpg';
   }
-
 }

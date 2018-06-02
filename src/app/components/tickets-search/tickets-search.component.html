@@ -1,56 +1,63 @@
-<div class="container">
-  <mat-form-field>
-    <mat-select placeholder="Откуда" [(ngModel)]="ticket.migration.departure">
-      <mat-option *ngFor="let departureCity of cities" [value]="departureCity">
-        {{ departureCity.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Куда" [(ngModel)]="ticket.migration.arrival">
-      <mat-option *ngFor="let arrivalCity of cities" [value]="arrivalCity">
-        {{ arrivalCity.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput [(ngModel)]="ticket.migration.departureDate" [matDatepicker]="picker"
-           placeholder="Дата отправления">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Класс" [(ngModel)]="ticket.clazz">
-      <mat-option value="BUSINESS">Бизнесс-класс</mat-option>
-      <mat-option value="ECONOMY">Эконом-класс</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-checkbox [(ngModel)]="ticket.baggageAvailable">Багаж</mat-checkbox>
-  <mat-checkbox [(ngModel)]="ticket.returnAvailable">Возврат билета</mat-checkbox>
-  <mat-checkbox [(ngModel)]="ticket.exchangeAvailable">Обмен билета</mat-checkbox>
-  <button mat-button (click)="searchTickets()" color="primary">Найти билеты</button>
+<div class="container p-3">
+  <div class="row align-items-center">
+    <div class="col vertical">
+      <mat-form-field>
+        <mat-select placeholder="{{'departure' | translate}}" [(ngModel)]="ticket.migration.departure">
+          <mat-option *ngFor="let departureCity of cities" [value]="departureCity">
+            {{ departureCity.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="{{'arrival' | translate}}" [(ngModel)]="ticket.migration.arrival">
+          <mat-option *ngFor="let arrivalCity of cities" [value]="arrivalCity">
+            {{ arrivalCity.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="ticket.migration.departureDate" [matDatepicker]="picker"
+               placeholder="{{'departure_date' | translate}}">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="{{'ticket_class' | translate}}" [(ngModel)]="ticket.clazz">
+          <mat-option value="BUSINESS">{{'business_class' | translate}}</mat-option>
+          <mat-option value="ECONOMY">{{'economy_class' | translate}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row align-items-center">
+    <mat-checkbox class="m-3" [(ngModel)]="ticket.baggageAvailable">{{'baggage' | translate}}</mat-checkbox>
+    <mat-checkbox class="m-3" [(ngModel)]="ticket.returnAvailable">{{'return_ticket' | translate}}</mat-checkbox>
+    <mat-checkbox class="m-3" [(ngModel)]="ticket.exchangeAvailable">{{'exchange_ticket' | translate}}</mat-checkbox>
+    <button mat-button (click)="searchTickets()" color="primary"><h4>{{'find_tickets' | translate}}</h4></button>
+  </div>
 
   <mat-table #table matSort [dataSource]="dataSource">
 
     <ng-container matColumnDef="arrival">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Время отправления</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{'departure_time' | translate}}</mat-header-cell>
       <mat-cell *matCellDef="let ticket">{{ticket.migration.departureDate | date: 'dd-MM-yyyy HH:mm:ss'}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="departure">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Время прибытия</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{'arrival_time' | translate}}</mat-header-cell>
       <mat-cell *matCellDef="let ticket">{{ticket.migration.arrivalDate | date: 'dd-MM-yyyy HH:mm:ss'}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="cost">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Цена билета</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{'ticket_cost' | translate}}</mat-header-cell>
       <mat-cell *matCellDef="let ticket">{{ticket.cost}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="buy">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let ticket">
-        <button mat-button (click)="buyTicket(ticket)" color="primary">Купить</button>
+        <button mat-button (click)="buyTicket(ticket)" color="primary">{{'buy' | translate}}</button>
       </mat-cell>
     </ng-container>
 

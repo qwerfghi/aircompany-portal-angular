@@ -1,101 +1,90 @@
-<div class="container">
+<div class="container p-2">
   <div class="row">
     <div class="col">
-      <h2>Регистрация</h2>
-      <p>
-        Обращаем Ваше внимание на необходимость заполнения регистрационной анкеты в точном соответствии с паспортными
-        данными.
-        При изменении паспортных данных просим Вас известить об этом Авиакомпанию незамедлительно.
-        Несоответствие регистрационных данных паспортным может служить причиной отказа принятия билета при посадке.
-      </p>
+      <h2>{{'registration' | translate}}</h2>
+      <p>{{'registration_information' | translate}}</p>
     </div>
   </div>
   <div class="row">
-    <div class="col">
-      <div class="vertical">
-        <h3>Логин и пароль</h3>
+    <div class="col vertical">
+      <h3>{{'login_and_password' | translate}}</h3>
         <mat-form-field>
-          <input [(ngModel)]="user.username" matInput placeholder="Логин">
+          <input [(ngModel)]="user.username" matInput placeholder="{{'username' | translate}}">
         </mat-form-field>
         <mat-form-field>
-          <input matInput [(ngModel)]="user.password" placeholder="Пароль" [type]="hide ? 'password' : 'text'">
+          <input matInput [(ngModel)]="user.password" placeholder="{{'password' | translate}}"
+                 [type]="hide ? 'password' : 'text'">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Повторите пароль" [type]="hide ? 'password' : 'text'">
+          <input matInput placeholder="{{'repeat_password' | translate}}" [type]="hide ? 'password' : 'text'">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         </mat-form-field>
-      </div>
     </div>
   </div>
   <div class="row">
-    <div class="col">
-      <div class="vertical">
-        <h3>Персональные данные</h3>
+    <div class="col vertical">
+      <h3>{{'personal_information' | translate}}</h3>
         <mat-form-field>
-          <input [(ngModel)]="person.name" matInput placeholder="Имя">
+          <input [(ngModel)]="person.name" matInput placeholder="{{'name' | translate}}">
         </mat-form-field>
         <mat-form-field>
-          <input [(ngModel)]="person.lastName" matInput placeholder="Фамилия">
+          <input [(ngModel)]="person.lastName" matInput placeholder="{{'last_name' | translate}}">
         </mat-form-field>
         <mat-radio-group [(ngModel)]="person.sex">
-          <mat-radio-button value="MALE">Мужской</mat-radio-button>
-          <mat-radio-button value="FEMALE">Женский</mat-radio-button>
+          <mat-radio-button value="MALE" class="p-r-1">{{'male' | translate}}</mat-radio-button>
+          <mat-radio-button value="FEMALE">{{'female' | translate}}</mat-radio-button>
         </mat-radio-group>
         <mat-form-field>
-          <input matInput [(ngModel)]="person.birthdate" [matDatepicker]="picker" placeholder="Дата рождения">
+          <input matInput [(ngModel)]="person.birthdate" [matDatepicker]="picker"
+                 placeholder="{{'birthdate' | translate}}">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-          <input matInput [(ngModel)]="person.email" placeholder="Email">
+          <input matInput [(ngModel)]="person.email" placeholder="{{'email' | translate}}">
         </mat-form-field>
         <mat-form-field>
-          <input matInput [(ngModel)]="person.phone" placeholder="Номер телефона">
+          <input matInput [(ngModel)]="person.phone" placeholder="{{'phone_number' | translate}}">
         </mat-form-field>
-      </div>
     </div>
   </div>
   <div class="row">
-    <div class="col">
-      <div class="vertical">
-        <h3>Паспортные данные</h3>
+    <div class="col vertical">
+      <h3>{{'passport_data' | translate}}</h3>
         <mat-form-field>
-          <input [(ngModel)]="person.passport" matInput placeholder="Серия и номер паспорта">
+          <input [(ngModel)]="person.passport" matInput placeholder="{{'passport_number' | translate}}">
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="Гражданство" [(ngModel)]="person.country">
+          <mat-select placeholder="{{'citizenship' | translate}}" [(ngModel)]="person.country">
             <mat-option *ngFor="let country of countries" [value]="country">
               {{ country.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-    </div>
   </div>
   <div class="row">
-    <div class="col">
-      <div class="vertical">
-        <h3>Адресные данные</h3>
+    <div class="col vertical">
+      <h3>{{'address_data' | translate}}</h3>
         <mat-form-field>
-          <input [(ngModel)]="address.country" matInput placeholder="Страна">
+          <input [(ngModel)]="address.country" matInput placeholder="{{'country' | translate}}">
         </mat-form-field>
         <mat-form-field>
-          <input [(ngModel)]="address.city" matInput placeholder="Город">
+          <input [(ngModel)]="address.city" matInput placeholder="{{'city' | translate}}">
         </mat-form-field>
         <mat-form-field>
-          <input [(ngModel)]="address.street" matInput placeholder="Улица">
+          <input [(ngModel)]="address.street" matInput placeholder="{{'street' | translate}}">
         </mat-form-field>
         <mat-form-field>
-          <input [(ngModel)]="address.houseNumber" matInput placeholder="Дом">
+          <input [(ngModel)]="address.houseNumber" matInput placeholder="{{'house' | translate}}">
         </mat-form-field>
         <mat-form-field>
-          <input [(ngModel)]="address.apartmentNumber" matInput placeholder="Квартира">
+          <input [(ngModel)]="address.apartmentNumber" matInput placeholder="{{'apartment' | translate}}">
         </mat-form-field>
-      </div>
     </div>
   </div>
-  <button mat-button (click)="registerUser()" color="primary">
-    <h3>Зарегистрироваться</h3>
+  <button mat-button (click)="registerUser()" color="primary" class="m-3">
+    <h3>{{'registration_button' | translate}}</h3>
   </button>
 </div>

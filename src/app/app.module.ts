@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CdkTableModule} from '@angular/cdk/table';
 import {
@@ -49,6 +49,13 @@ import {RegistrationComponent} from './components/registration/registration.comp
 import {GlobalService} from './service/global.service';
 import {TicketsSearchComponent} from './components/tickets-search/tickets-search.component';
 import {StorageServiceModule} from 'angular-webstorage-service';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {PersonalInformationComponent} from './components/personal-information/personal-information.component';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -56,7 +63,8 @@ import {StorageServiceModule} from 'angular-webstorage-service';
     IndexComponent,
     LoginPopupComponent,
     RegistrationComponent,
-    TicketsSearchComponent
+    TicketsSearchComponent,
+    PersonalInformationComponent
   ],
   imports: [
     BrowserModule,
@@ -100,13 +108,19 @@ import {StorageServiceModule} from 'angular-webstorage-service';
     MatTooltipModule,
     MatFormFieldModule,
     NgbModule.forRoot(),
-    StorageServiceModule
+    StorageServiceModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [GlobalService],
   entryComponents: [LoginPopupComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-
 
 }

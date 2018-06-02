@@ -1,67 +1,92 @@
-<mat-toolbar>
+<mat-toolbar color="primary">
   <div class="container">
-    <span>Aircompany</span>
-    <span class="example-fill-remaining-space"></span>
-    <mat-form-field>
-      <mat-select [(value)]="selected">
-        <mat-option value="option1">Русский</mat-option>
-        <mat-option value="option2">English</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button mat-button (click)="showLoginPopup()">
-      <mat-icon>account_circle</mat-icon>
-      <span> Login</span>
-    </button>
-    <span [hidden]="sharedService.currentUser == undefined">{{sharedService.currentUser == undefined ? 'asd' : sharedService.currentUser.username}}</span>
-    <button mat-button>
-      <mat-icon>menu</mat-icon>
-      <span> Menu</span>
-    </button>
+    <div class="row align-items-center">
+      <div class="col-lg-2">
+        <a routerLink="/" class="logo">
+          <h2>СlearAir</h2>
+        </a>
+      </div>
+      <div class="col"></div>
+      <div class="col-lg-2">
+        <mat-form-field>
+          <mat-select [(value)]="selected" #language (selectionChange)="changeLanguage(language.value)">
+            <mat-option value="ru">Русский</mat-option>
+            <mat-option value="en">English</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-1" [hidden]="sharedService.currentUser != undefined">
+        <button mat-button (click)="showLoginPopup()">
+          <mat-icon>account_circle</mat-icon>
+          <span>{{'login' | translate}}</span>
+        </button>
+      </div>
+      <div class="col-lg-1" [hidden]="sharedService.currentUser == undefined">
+        <button mat-button [matMenuTriggerFor]="user">
+          <mat-icon>person</mat-icon>
+          <span>{{sharedService.currentUser == undefined ? 'asd' : sharedService.currentUser.username}}</span>
+        </button>
+        <mat-menu #user="matMenu">
+          <button mat-menu-item routerLink="/personal-information">{{'personal_information' | translate}}</button>
+          <button mat-menu-item routerLink="/search">{{'buy_ticket' | translate}}</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="logOut()">{{'logout' | translate}}</button>
+        </mat-menu>
+      </div>
+      <div class="col-lg-1">
+        <button mat-button>
+          <mat-icon>menu</mat-icon>
+          <span>{{'menu' | translate}}</span>
+        </button>
+      </div>
+    </div>
   </div>
 </mat-toolbar>
 <router-outlet></router-outlet>
 <footer>
   <mat-divider></mat-divider>
   <div class="container">
-    <div class="row top-footer">
+    <div class="row align-items-center">
       <div class="col">
-        <p class="t-h3">Справочная служба</p>
+        <p class="t-h3">{{'information_office' | translate}}</p>
         <p>
-          <span id="belarus-only">106 (Только по Беларуси)</span><br>
-          <span>+375 17 220 25 55</span>
+          <span id="belarus-only">167 ({{'only_in_Belarus' | translate}})</span><br>
+          <span>+375 29 505 53 93</span>
         </p>
-        <a href="mailto:support@belavia.by">support@belavia.by</a>
+        <a href="mailto:support@clearair.by">support@clearair.by</a>
+      </div>
+      <div class="col">
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item><a href="/kontakty/">{{'ticket_offices' | translate}}</a></mat-list-item>
+            <mat-list-item><a href="/time-table/">{{'timetable' | translate}}</a></mat-list-item>
+            <mat-list-item><a href="/table/">{{'arrival_and_departure' | translate}}</a></mat-list-item>
+            <mat-list-item><a href="/obrashheniya-grazhdan/">{{'reference_service' | translate}}</a></mat-list-item>
+          </mat-list>
+        </mat-card-content>
+
       </div>
       <div class="col">
         <mat-list>
-          <mat-list-item><a href="/kontakty/">Кассы продаж</a></mat-list-item>
-          <mat-list-item><a href="/time-table/">Расписание</a></mat-list-item>
-          <mat-list-item><a href="/table/">Табло вылета/прилета</a></mat-list-item>
-          <mat-list-item><a href="/obrashheniya-grazhdan/">Обращения граждан</a></mat-list-item>
-          <mat-list-item><a href="/perevozka-gruzov/">Грузовые перевозки</a></mat-list-item>
-        </mat-list>
-      </div>
-      <div class="col">
-        <mat-list>
-          <mat-list-item><a href="/agentam/">Агентам</a></mat-list-item>
-          <mat-list-item><a href="/onair/">Журнал OnAir</a></mat-list-item>
-          <mat-list-item><a href="/kontakty/obratnaya-svyaz/">Обратная связь</a></mat-list-item>
-          <mat-list-item><a href="/dlya-smi/">Для СМИ</a></mat-list-item>
+          <mat-list-item><a href="/agentam/">{{'for_agents' | translate}}</a></mat-list-item>
+          <mat-list-item><a href="/konfidencialnost/">{{'privacy_policy' | translate}}</a></mat-list-item>
+          <mat-list-item><a href="/kontakty/obratnaya-svyaz/">{{'feedback' | translate}}</a></mat-list-item>
+          <mat-list-item><a href="/dlya-smi/">{{'for_mass_media' | translate}}</a></mat-list-item>
         </mat-list>
       </div>
       <div class="col">
         <div class="social">
-          <a href="http://www.facebook.com/belavia" title="Facebook" target="_blank">
-            <img src="/assets/soc-icons/facebook.svg" alt="Facebook" class="img-responsive">
+          <a href="https://www.facebook.com/rickroll548/" title="Facebook" target="_blank">
+            <img src="/assets/soc-icons/facebook.svg" alt="Facebook">
           </a>
-          <a href="http://twitter.com/Belavia_by" title="Twitter" target="_blank">
-            <img src="/assets/soc-icons/twitter.svg" alt="Twitter" class="img-responsive">
+          <a href="https://twitter.com/rickroll" title="Twitter" target="_blank">
+            <img src="/assets/soc-icons/twitter.svg" alt="Twitter">
           </a>
-          <a href="https://www.instagram.com/belavia.airlines/" title="Instagram" target="_blank">
-            <img src="/assets/soc-icons/instagram.svg" alt="Instagram" class="img-responsive">
+          <a href="https://www.instagram.com/p/BgSlRglAKBn/?tagged=rickroll" title="Instagram" target="_blank">
+            <img src="/assets/soc-icons/instagram.svg" alt="Instagram">
           </a>
-          <a href="https://www.youtube.com/user/OfficialBelavia" title="Youtube" target="_blank">
-            <img src="/assets/soc-icons/youtube.svg" alt="Youtube" class="img-responsive">
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title="Youtube" target="_blank">
+            <img src="/assets/soc-icons/youtube.svg" alt="Youtube">
           </a>
         </div>
       </div>
@@ -69,17 +94,14 @@
   </div>
   <mat-divider></mat-divider>
   <div class="container bottom-footer">
-    <div class="row">
+    <div class="row align-items-center">
       <div class="col copyright">
-        <span>Мы знаем, где купить авиабилеты дешево. Билеты на самолет в 220 стран мира.</span>
+        <span>{{'footer_info' | translate}}</span>
       </div>
     </div>
     <div class="row">
-      <div class="col-3 col-mb-12">
-        <a href="/konfidencialnost/">Конфиденциальность</a>
-      </div>
       <div class="col-9 copyright col-mb-12">
-        <span>© 2000 — 2018 «Авиакомпания «ClearAir»</span>
+        <span>{{'footer_range' | translate}}</span>
       </div>
     </div>
   </div>

@@ -12,10 +12,7 @@ import {GlobalService} from '../../service/global.service';
 export class LoginPopupComponent implements OnInit {
   hide = true;
 
-  formData = {
-    username: '',
-    password: ''
-  };
+  formData;
 
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService,
               public dialogRef: MatDialogRef<LoginPopupComponent>,
@@ -24,13 +21,19 @@ export class LoginPopupComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.formData = {
+      username: '',
+      password: ''
+    };
   }
 
   onLogin() {
-    this.authorizationService.findUserByUsernameAndPassword(this.formData.username, this.formData.password)
+    this.authorizationService
+      .findUserByUsernameAndPassword(this.formData.username, this.formData.password)
       .subscribe(currentUser => {
         this.global.currentUser = currentUser;
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        this.close();
       });
   }
 

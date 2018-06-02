@@ -1,44 +1,30 @@
 <ngb-carousel *ngIf="images">
   <ng-template ngbSlide>
-    <img [src]="images[0]" alt="Random first slide" class="carousel-img">
+    <img [src]="images[0]" alt="{{'banner1_header' | translate}}" class="carousel-img">
     <div class="carousel-caption">
-      <h3>First slide label</h3>
-      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      <h3>{{'banner1_header' | translate}}</h3>
+      <p>{{'banner1_text' | translate}}</p>
     </div>
   </ng-template>
   <ng-template ngbSlide>
-    <img [src]="images[1]" alt="Random second slide" class="carousel-img">
+    <img [src]="images[1]" alt="{{'banner2_header' | translate}}" class="carousel-img">
     <div class="carousel-caption">
-      <h3>Second slide label</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <h3>{{'banner2_header' | translate}}</h3>
+      <p>{{'banner2_text' | translate}}</p>
     </div>
   </ng-template>
   <ng-template ngbSlide>
-    <img [src]="images[2]" alt="Random third slide" class="carousel-img">
+    <img [src]="images[2]" alt="{{'banner3_header' | translate}}" class="carousel-img">
     <div class="carousel-caption">
-      <h3>Third slide label</h3>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      <h3>{{'banner3_header' | translate}}</h3>
+      <p>{{'banner3_text' | translate}}</p>
     </div>
   </ng-template>
   <ng-template ngbSlide>
-    <img [src]="images[3]" alt="Random third slide" class="carousel-img">
+    <img [src]="images[3]" alt="{{'banner4_header' | translate}}" class="carousel-img">
     <div class="carousel-caption">
-      <h3>Third slide label</h3>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-    </div>
-  </ng-template>
-  <ng-template ngbSlide>
-    <img [src]="images[4]" alt="Random third slide" class="carousel-img">
-    <div class="carousel-caption">
-      <h3>Third slide label</h3>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-    </div>
-  </ng-template>
-  <ng-template ngbSlide>
-    <img [src]="images[5]" alt="Random third slide" class="carousel-img">
-    <div class="carousel-caption">
-      <h3>Third slide label</h3>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      <h3>{{'banner4_header' | translate}}</h3>
+      <p>{{'banner4_text' | translate}}</p>
     </div>
   </ng-template>
 </ngb-carousel>
