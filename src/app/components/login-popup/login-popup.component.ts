@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
-import {AuthorizationService} from '../../service/authorization.service';
 import {GlobalService} from '../../service/global.service';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-login-popup',
@@ -16,7 +16,7 @@ export class LoginPopupComponent implements OnInit {
 
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService,
               public dialogRef: MatDialogRef<LoginPopupComponent>,
-              private authorizationService: AuthorizationService,
+              private userService: UserService,
               private global: GlobalService) {
   }
 
@@ -28,7 +28,7 @@ export class LoginPopupComponent implements OnInit {
   }
 
   onLogin() {
-    this.authorizationService
+    this.userService
       .findUserByUsernameAndPassword(this.formData.username, this.formData.password)
       .subscribe(currentUser => {
         this.global.currentUser = currentUser;

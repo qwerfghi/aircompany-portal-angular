@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {DatePipe} from '@angular/common';
 import {GlobalService} from '../../service/global.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-tickets-search',
@@ -19,6 +20,7 @@ export class TicketsSearchComponent implements OnInit {
 
   ticket: Ticket;
   cities: City[];
+  form: FormGroup;
 
   dataSource = new MatTableDataSource();
   displayedColumns = ['arrival', 'departure', 'cost', 'buy'];
@@ -43,6 +45,13 @@ export class TicketsSearchComponent implements OnInit {
     this.ticket.returnAvailable = false;
     this.ticket.baggageAvailable = false;
     this.getCities();
+    this.form = new FormGroup({
+      // tslint:disable-next-line
+      departure: new FormControl('', Validators.required),
+      arrival: new FormControl('', Validators.required),
+      departure_date: new FormControl('', Validators.required),
+      ticket_class: new FormControl('', Validators.required)
+    });
   }
 
   getCities() {

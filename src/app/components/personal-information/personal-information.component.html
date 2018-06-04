@@ -1,18 +1,23 @@
-<div class="container">
-  <div class="row p-5">
+<div class="container p-5">
+  <div class="row">
     <div class="col">
       <img src="/assets/anonim.jpg" class="img-fluid float-left mr-4 d-none d-lg-block">
       <h4><b><u>{{user.person.lastName}} {{user.person.name}}</u></b></h4><br>
-      Пол: {{user.person.sex}} <br>
-      Номер паспорта: {{user.person.passport}} <br>
-      Гражданство: {{user.person.country.name}} <br>
-      Дата рождения: {{user.person.birthdate}} <br>
+      {{'sex' | translate}}: {{user.person.sex}} <br>
+      {{'passport_number' | translate}}: {{user.person.passport}} <br>
+      {{'citizenship' | translate}}: {{user.person.country.name}} <br>
+      {{'birthdate' | translate}}: {{user.person.birthdate}} <br>
       <br>
-      Адрес: {{user.person.address.region}} обл., г. {{user.person.address.city}}, ул. {{user.person.address.street}},
-      д. {{user.person.address.houseNumber}}, кв. {{user.person.address.apartmentNumber}} <br>
-      <br>
-      тел. {{user.person.phone}} <br>
-      Email: {{user.person.email}} <br>
+      <h5>{{'address' | translate}}</h5>
+      <p>
+        {{'city' | translate}}: {{user.person.address.city}} <br>
+        {{'street' | translate}}. {{user.person.address.street}} <br>
+        {{'house_number' | translate}}: {{user.person.address.houseNumber}} <br>
+        {{'apartment_number' | translate}}: {{user.person.address.apartmentNumber}} <br>
+      </p>
+
+      {{'phone_number' | translate}}. {{user.person.phone}} <br>
+      {{'email' | translate}}: {{user.person.email}} <br>
 
     </div>
   </div>
@@ -22,19 +27,29 @@
       <mat-table #table matSort [dataSource]="dataSource">
 
         <ng-container matColumnDef="arrival">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'departure_time' | translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let ticket">{{ticket.migration.departure | date: 'dd-MM-yyyy'}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'arrival' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let ticket">{{ticket.migration.arrival.name}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="departure">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'arrival_time' | translate}}</mat-header-cell>
+        <ng-container matColumnDef="arrivalDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'arrivalDate' | translate}}</mat-header-cell>
           <mat-cell *matCellDef="let ticket">{{ticket.migration.arrivalDate | date: 'dd-MM-yyyy'}}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="departure">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'departure' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let ticket">{{ticket.migration.departure.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="departureDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'departureDate' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let ticket">{{ticket.migration.departureDate | date: 'dd-MM-yyyy'}}</mat-cell>
+        </ng-container>
         <ng-container matColumnDef="cost">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'ticket_cost' | translate}}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'cost' | translate}}</mat-header-cell>
           <mat-cell *matCellDef="let ticket">{{ticket.cost}}</mat-cell>
         </ng-container>
+
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let migration; columns: displayedColumns;"></mat-row>

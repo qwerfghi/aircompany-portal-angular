@@ -1,41 +1,49 @@
 <div class="container p-3">
-  <div class="row align-items-center">
-    <div class="col vertical">
-      <mat-form-field>
-        <mat-select placeholder="{{'departure' | translate}}" [(ngModel)]="ticket.migration.departure">
-          <mat-option *ngFor="let departureCity of cities" [value]="departureCity">
-            {{ departureCity.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="{{'arrival' | translate}}" [(ngModel)]="ticket.migration.arrival">
-          <mat-option *ngFor="let arrivalCity of cities" [value]="arrivalCity">
-            {{ arrivalCity.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput [(ngModel)]="ticket.migration.departureDate" [matDatepicker]="picker"
-               placeholder="{{'departure_date' | translate}}">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="{{'ticket_class' | translate}}" [(ngModel)]="ticket.clazz">
-          <mat-option value="BUSINESS">{{'business_class' | translate}}</mat-option>
-          <mat-option value="ECONOMY">{{'economy_class' | translate}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <form class="w-100" [formGroup]="form">
+    <div class="row align-items-center">
+      <div class="col vertical">
+        <mat-form-field>
+          <mat-select placeholder="{{'departure' | translate}}" [(ngModel)]="ticket.migration.departure"
+                      formControlName="departure" required>
+            <mat-option *ngFor="let departureCity of cities" [value]="departureCity">
+              {{ departureCity.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="{{'arrival' | translate}}" [(ngModel)]="ticket.migration.arrival"
+                      formControlName="arrival" required>
+            <mat-option *ngFor="let arrivalCity of cities" [value]="arrivalCity">
+              {{ arrivalCity.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="ticket.migration.departureDate" [matDatepicker]="picker"
+                 formControlName="departure_date"
+                 placeholder="{{'departure_date' | translate}}" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="{{'ticket_class' | translate}}" [(ngModel)]="ticket.clazz"
+                      formControlName="ticket_class" required>
+            <mat-option value="BUSINESS">{{'business_class' | translate}}</mat-option>
+            <mat-option value="ECONOMY">{{'economy_class' | translate}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
-  </div>
 
-  <div class="row align-items-center">
-    <mat-checkbox class="m-3" [(ngModel)]="ticket.baggageAvailable">{{'baggage' | translate}}</mat-checkbox>
-    <mat-checkbox class="m-3" [(ngModel)]="ticket.returnAvailable">{{'return_ticket' | translate}}</mat-checkbox>
-    <mat-checkbox class="m-3" [(ngModel)]="ticket.exchangeAvailable">{{'exchange_ticket' | translate}}</mat-checkbox>
-    <button mat-button (click)="searchTickets()" color="primary"><h4>{{'find_tickets' | translate}}</h4></button>
-  </div>
+    <div class="row align-items-center">
+      <mat-checkbox class="m-3" [(ngModel)]="ticket.baggageAvailable">{{'baggage' | translate}}</mat-checkbox>
+      <mat-checkbox class="m-3" [(ngModel)]="ticket.returnAvailable">{{'return_ticket' | translate}}</mat-checkbox>
+      <mat-checkbox class="m-3" [(ngModel)]="ticket.exchangeAvailable">{{'exchange_ticket' | translate}}</mat-checkbox>
+      <button type="submit" mat-button (click)="searchTickets()" color="primary" [disabled]="form.invalid">
+        <h4>{{'find_tickets' | translate}}</h4>
+      </button>
+    </div>
+  </form>
 
   <mat-table #table matSort [dataSource]="dataSource">
 

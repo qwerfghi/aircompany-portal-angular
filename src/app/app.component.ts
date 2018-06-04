@@ -3,6 +3,7 @@ import {LoginPopupComponent} from './components/login-popup/login-popup.componen
 import {MatDialog} from '@angular/material';
 import {GlobalService} from './service/global.service';
 import {TranslateService} from '@ngx-translate/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               public sharedService: GlobalService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private router: Router) {
     translate.setDefaultLang('en');
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
@@ -37,6 +39,7 @@ export class AppComponent implements OnInit {
   logOut(): void {
     localStorage.removeItem('currentUser');
     this.sharedService.currentUser = undefined;
+    this.router.navigateByUrl('/index');
   }
 
   changeLanguage(language: string): void {
