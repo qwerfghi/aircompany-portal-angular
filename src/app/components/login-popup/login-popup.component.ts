@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
-import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+import {LOCAL_STORAGE, WebStorageService} from 'ngx-webstorage-service';
 import {GlobalService} from '../../service/global.service';
 import {UserService} from '../../service/user.service';
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login-popup',

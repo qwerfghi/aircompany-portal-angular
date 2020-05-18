@@ -4,8 +4,8 @@ import {Person} from '../../model/entity/Person';
 import {Address} from '../../model/entity/Address';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Country} from '../../model/entity/Country';
-import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})

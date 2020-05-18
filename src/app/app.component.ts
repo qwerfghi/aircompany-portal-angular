@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginPopupComponent} from './components/login-popup/login-popup.component';
-import {MatDialog} from '@angular/material';
 import {GlobalService} from './service/global.service';
 import {TranslateService} from '@ngx-translate/core';
 import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
     translate.setDefaultLang('en');
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
+
     translate.use('en');
   }
 

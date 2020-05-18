@@ -118,5 +118,8 @@
       }
     }
   },
-  "defaultProject": "aircompany-portal-angular"
+  "defaultProject": "aircompany-portal-angular",
+  "cli": {
+    "analytics": "f6613e36-f2a3-4999-8a4e-e5861cf5f53c"
+  }
 }

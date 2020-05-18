@@ -3,10 +3,12 @@ import {Ticket} from '../../model/entity/Ticket';
 import {Migration} from '../../model/entity/Migration';
 import {City} from '../../model/entity/City';
 import {HttpClient} from '@angular/common/http';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {DatePipe} from '@angular/common';
 import {GlobalService} from '../../service/global.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-tickets-search',
@@ -28,6 +30,7 @@ export class TicketsSearchComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

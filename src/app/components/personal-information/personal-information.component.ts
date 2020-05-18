@@ -1,8 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {GlobalService} from '../../service/global.service';
 import {User} from '../../model/entity/User';
-import {MatSort, MatTableDataSource} from '@angular/material';
 import {UserService} from '../../service/user.service';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-personal-information',
@@ -18,6 +19,7 @@ export class PersonalInformationComponent implements OnInit {
 
   user: User;
 
+  // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
